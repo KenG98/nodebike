@@ -13,18 +13,22 @@ function gameroomHTML(){
 	h = 'a work in progress';
 	return h;
 }
-
+var width = $('body').width();
+var height = $('body').height();
 $('#page').html(waitroomHTML());
 
-socket.on('game started', function(){
+socket.on('start game', function(){
 	$('#page').html(gameroomHTML());
-	// var joystick = new VirtualJoystick({container : $('#page'), mouseSupport : true});
-	// setInterval(function(){
-	// 	var x = joystick.deltaX();
-	// 	var y = joystick.deltaY();
-	// 	console.log(x, y);
-	// 	// var angle = Math.atan(y/x);
-	// }, 34);
+	$('#joyst').width = width;
+	$('#joyst').height = height;
+	console.log('game has started');
+	var joystick = new VirtualJoystick({container : document.getElementById('joyst'), mouseSupport : true});
+	setInterval(function(){
+		var x = joystick.deltaX();
+		var y = joystick.deltaY();
+		console.log(x, y);
+		// var angle = Math.atan(y/x);
+	}, 34);
 });
 
 function changePlayer(radians){

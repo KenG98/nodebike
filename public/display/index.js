@@ -39,9 +39,12 @@ socket.on('update', function(data){
 });
 
 function startGame(){
+	console.log('starting!');
 	socket.emit('start game');
 	$('#page').html(gameroomHTML());
 	canvas = $('#gamescreen')[0];
+	$('#page').width = width;
+	$('#page').height = height;
 	canvas.width = width;
 	canvas.height = height;
 	canv = canvas.getContext("2d");
