@@ -1,16 +1,72 @@
 body{
-	background-color: #181818;
+	background-color: #383838 ;
+	font-weight: lighter;
+	font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 }
 
 h1{
 	color:white;
-	text-align: center;
+	text-align: left;
 	font-size: 3em;
-	font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+	font-weight: lighter;
 }
 
 p{
 	color:white;
-	font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+	text-align: center;
+	font-size: 2em;
 
+}
+
+#box{
+	padding: 15px;
+	border: solid white;
+	border-width: thin;
+	width: 400px;
+	margin: 0 auto;
+}
+
+.button {
+  display:block;
+  background-color: #383838;
+  border: none;
+  
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 2em;
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+
+  font-weight: lighter;
+  padding: 20px;
+  width: 350px;
+  transition: all 0.5s;
+  cursor: pointer;
+  position:relative;
+  margin:0 auto;
+ 
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
