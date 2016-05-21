@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 io.on('connection' , function(socket){
-  console.log('New connection:' + socket.handshake.address.address + ' on socket ' + socket.id);
+  console.log('New connection on socket ' + socket.id);
 
   socket.on('new mobile', function(data){
     console.log('new mobile');
