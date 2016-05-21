@@ -34,9 +34,9 @@ io.on('connection' , function(socket){
     newDisplay(socket);
   });
 
-  socket.on('start game', function(data){
+  socket.on('start game', function(){
     io.to('room ' + '0').emit('start game');
-  })
+  });
   socket.on('update', function(data){
     io.to(games[0].display).emit('update', data);
   });
