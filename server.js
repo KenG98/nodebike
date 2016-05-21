@@ -46,5 +46,4 @@ function newDisplay(socket){
 
 function newMobile(socket){
   games[0].players[socket.id] = {};
-  io.to(games[0].display).emit('new mobile', games[0]);
 }
