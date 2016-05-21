@@ -5,7 +5,7 @@ socket.on('connect', function () {
 });
 
 function waitroomHTML(){
-	var h = '<p>Waiting for game to start</p>';
+	var h = '<p>Waiting for game to start...<br>See your color on screen?</p>';
 	return h;
 }
 
