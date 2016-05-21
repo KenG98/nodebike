@@ -21,7 +21,7 @@ io.sockets.on('connection' , function(socket){
   })
 
   socket.on('new mobile', function(data){
-    io.sockets(game[0].display).emit('new display', socket.id);
+    io.sockets(game[0].display).emit('new mobile', socket.id);
   });
 
   socket.on('new display', function(data){
