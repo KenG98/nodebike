@@ -1,4 +1,3 @@
-// var socket = io('/mobile');
 var socket = io();
 
 function waitroomHTML(){

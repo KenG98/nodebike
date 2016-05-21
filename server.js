@@ -11,7 +11,6 @@ http.listen(PORT, function () {
 
 app.use(express.static(__dirname + '/public'));
 
-
 io.on('connection' , function(socket){
   console.log('New connection on socket ' + socket.id);
 
