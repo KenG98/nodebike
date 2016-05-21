@@ -35,7 +35,7 @@ io.on('connection' , function(socket){
   });
 
   socket.on('start game', function(data){
-    io.emit('start game', data);
+    io.emit('start game');
   })
   socket.on('update', function(data){
     io.to(games[0].display).emit('update', data);
@@ -52,7 +52,7 @@ function newDisplay(socket){
     display: socket.id,
   };
   games[0].players = {};
-  socket.join('t')
+  socket.join('room ' + '0')
 }
 function disconnect(socket){
   for(var i in games){
@@ -71,4 +71,5 @@ function disconnect(socket){
 
 function newMobile(socket){
   games[0].players[socket.id] = {};
+  socket.join('room ' + '0');
 }
