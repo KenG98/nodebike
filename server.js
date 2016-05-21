@@ -14,15 +14,16 @@ app.use(express.static(__dirname + '/public'));
 io.on('connection' , function(socket){
   console.log('New connection:' + socket.handshake.address.address + ' on socket ' + socket.id);
 
+  socket.on('disconnect', function(){
+  	console.log('Disconnection.');
+  })
+
   socket.on('new mobile', function(data){
-    console.log('new mobile');
+    io.emit('player joined', socket.id);
   });
 
   socket.on('new display', function(data){
     console.log('new display');
   });
-
-
-
 
 });

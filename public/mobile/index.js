@@ -15,3 +15,9 @@ $('#page').html(waitroomHTML());
 socket.on('game started', function(){
 	$('#page').html(gameroomHTML());
 });
+
+socket.emit('new mobile');
+
+function changePlayer(radians){
+	socket.emit('player changed', radians);
+}

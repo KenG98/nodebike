@@ -1,26 +1,29 @@
 var socket = io();
 
-gameData = {};
+var gameData = {
+	players: []
+};
 
 function waitroomHTML(){
 	var h = '<p>Waiting for game to start</p> \n ';
 	h += '<p>Players:</p> \n';
 	for(p in gameData.players){
-		h += p.id + '\n';
+		h += '<p>' + p + '</p>\n';
 	}
 	h += '<button onclick="startGame()">Start Game</button>';
 	return h;
 }
 
+function gameroomHTML(){
+	var h = '<canvas id="gamescreen"></canvas>';
+	return h;
+}
+
 $('#page').html(waitroomHTML());
 
-socket.on('player joined', function(data){
-	gameData.players = data;
+socket.on('player joined', function(playerid){
+	gameData.players[playerid] = "x";
 	$('#page').html(waitroomHTML());
-});
-
-socket.on('update game data', function(data){
-	gameData = data;
 });
 
 function startGame(){
@@ -33,13 +36,6 @@ function startGame(){
 	setInterval(run, 34);
 }
 
-function gameroomHTML(){
-	var h = '<canvas id="gamescreen"></canvas>';
-	return h;
-}
-
 function run(){
 	
 }
-
-
