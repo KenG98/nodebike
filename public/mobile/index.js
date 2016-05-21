@@ -10,17 +10,18 @@ function waitroomHTML(){
 }
 
 function gameroomHTML(){
-	h = 'a work in progress';
+	h = '<p>Touch and drag!</p>';
 	return h;
 }
+
 var width = $('body').width();
 var height = $('body').height();
 $('#page').html(waitroomHTML());
 
 socket.on('start game', function(){
 	$('#page').html(gameroomHTML());
-	$('#joyst').width = width;
-	$('#joyst').height = height;
+	$('#joyst').width(width);
+	$('#joyst').height(height);
 	console.log('game has started');
 	var joystick = new VirtualJoystick({container : document.getElementById('joyst'), mouseSupport : true});
 	setInterval(function(){

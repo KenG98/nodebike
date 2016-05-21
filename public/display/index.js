@@ -43,8 +43,8 @@ function startGame(){
 	socket.emit('start game');
 	$('#page').html(gameroomHTML());
 	canvas = $('#gamescreen')[0];
-	$('#page').width = width;
-	$('#page').height = height;
+	$('#page').width(width);
+	$('#page').height(height);
 	canvas.width = width;
 	canvas.height = height;
 	canv = canvas.getContext("2d");
