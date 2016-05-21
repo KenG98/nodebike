@@ -18,13 +18,13 @@ $('#page').html(waitroomHTML());
 
 socket.on('game started', function(){
 	$('#page').html(gameroomHTML());
-	var joystick = new VirtualJoystick({container : $('#page'), mouseSupport : true});
-	setInterval(function(){
-		var x = joystick.deltaX();
-		var y = joystick.deltaY();
-		console.log(x, y);
-		// var angle = Math.atan(y/x);
-	}, 34);
+	// var joystick = new VirtualJoystick({container : $('#page'), mouseSupport : true});
+	// setInterval(function(){
+	// 	var x = joystick.deltaX();
+	// 	var y = joystick.deltaY();
+	// 	console.log(x, y);
+	// 	// var angle = Math.atan(y/x);
+	// }, 34);
 });
 
 function changePlayer(radians){
