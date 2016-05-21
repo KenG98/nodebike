@@ -20,7 +20,7 @@ io.on('connection' , function(socket){
 
   socket.on('disconnect', function(){
     console.log('Disconnection.');
-  })
+  });
 
   socket.on('new mobile', function(data){
     io.to(games[0].display).emit('new mobile', data);

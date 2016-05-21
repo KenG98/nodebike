@@ -1,7 +1,7 @@
 var socket = io();
 
 socket.on('connect', function () {
-  	socket.emit('new mobile', {id: socket.id});
+	socket.emit('new mobile', {id: socket.id});
 });
 
 function waitroomHTML(){
@@ -18,9 +18,14 @@ $('#page').html(waitroomHTML());
 
 socket.on('game started', function(){
 	$('#page').html(gameroomHTML());
+	var joystick = new VirtualJoystick({container : $('#page'), mouseSupport : true});
+	setInterval(function(){
+		var x = joystick.deltaX();
+		var y = joystick.deltaY();
+		console.log(x, y);
+		// var angle = Math.atan(y/x);
+	}, 34);
 });
-
-// socket.emit('new mobile');
 
 function changePlayer(radians){
 	socket.emit('update', {id: socket.id, radians: radians});
