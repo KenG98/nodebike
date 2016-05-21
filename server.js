@@ -1,9 +1,12 @@
-var PORT = 8080;
+var express = require('express');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-var io = require('socket.io').listen(PORT);
+var PORT = 3000
 
-
-io.on('connection', function(socket) {
-  console.log('New connection from ' + socket.handshake.address.address + ' on socket ' + socket.id);
-
+app.listen(PORT, function () {
+  console.log('Running on *:' + PORT);
 });
+
+app.use(express.static(__dirname + '/public'));
