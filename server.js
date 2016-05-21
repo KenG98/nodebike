@@ -34,7 +34,7 @@ io.on('connection' , function(socket){
     newDisplay(socket);
   });
 
-  socket.on('start game' function(data){
+  socket.on('start game', function(data){
     io.emit('start game', data);
   })
   socket.on('update', function(data){
@@ -47,11 +47,12 @@ io.on('connection' , function(socket){
   });
 });
 
-function newDisplay(socket){
-  games[0] = {
+function newDisplay(socket, gameId=0){
+  games[gameId] = {
     display: socket.id,
   };
-  games[0].players = {};
+  games[gameId].players = {};
+  socket.join()
 }
 function disconnect(socket){
   for(var i in games){
@@ -68,6 +69,6 @@ function disconnect(socket){
   }
 }
 
-function newMobile(socket){
-  games[0].players[socket.id] = {};
+function newMobile(socket, gameId = 0){
+  games[gameId].players[socket.id] = {};
 }
