@@ -39,3 +39,5 @@ function startGame(){
 function run(){
 
 }
+
+socket.emit('new display');

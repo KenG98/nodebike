@@ -19,5 +19,5 @@ socket.on('game started', function(){
 socket.emit('new mobile');
 
 function changePlayer(radians){
-	socket.emit('player changed', radians);
+	socket.emit('update', {radians: radians});
 }
