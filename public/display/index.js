@@ -5,6 +5,9 @@ var gameData = {
 	players: {}
 };
 
+var width = $('body').width();
+var height = $('body').height();
+
 function waitroomHTML(){
 	var h = '<p id="box">Waiting for players to join...</p> \n ';
 	h += '<p>Current Players:</p> \n';
@@ -27,7 +30,7 @@ $('#page').html(waitroomHTML());
 socket.emit('new display');
 
 socket.on('new mobile', function(data){
-	gameData.players[data.id] = {color: "#00FF00", radians: Math.random() * 6.28};
+	gameData.players[data.id] = {color: "#00FF00", radians: Math.random() * 6.28, x: Math.random() * width, y: Math.random() * height};
 	$('#page').html(waitroomHTML());
 });
 
@@ -39,14 +42,14 @@ function startGame(){
 	socket.emit('start game');
 	$('#page').html(gameroomHTML());
 	canvas = $('#gamescreen')[0];
-	canvas.width = $('#page').width();
-	canvas.height = $('#page').height();
+	canvas.width = width;
+	canvas.height = height;
 	canv = canvas.getContext("2d");
 	setInterval(run, 34);
 }
 
 function run(){
-
+	
 }
 
 
