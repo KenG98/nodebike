@@ -23,7 +23,7 @@ io.on('connection' , function(socket){
   })
 
   socket.on('new mobile', function(data){
-    io.to(games[0].display).emit('new mobile', socket.id);
+    io.to(games[0].display).emit('new mobile', data);
   });
 
   socket.on('new display', function(data){

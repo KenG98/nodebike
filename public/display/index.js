@@ -2,7 +2,7 @@
 var socket = io();
 
 var gameData = {
-	players: []
+	players: {}
 };
 
 function waitroomHTML(){
@@ -24,14 +24,13 @@ function gameroomHTML(){
 $('#page').html(waitroomHTML());
 socket.emit('new display');
 
-socket.on('new mobile', function(playerid){
-	gameData.players[playerid] = {color: "#00FF00", radians: Math.random() * 6.28};
+socket.on('new mobile', function(data){
+	gameData.players[data.id] = {color: "#00FF00", radians: Math.random() * 6.28};
 	$('#page').html(waitroomHTML());
 });
 
 socket.on('update', function(data){
 	gameData.players[data.id].radians = data.radians;
-	console.log(gameData);
 });
 
 function startGame(){

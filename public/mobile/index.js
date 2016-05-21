@@ -1,5 +1,9 @@
 var socket = io();
 
+socket.on('connect', function () {
+  	socket.emit('new mobile', {id: socket.id});
+});
+
 function waitroomHTML(){
 	var h = '<p>Waiting for game to start</p>';
 	return h;
@@ -16,7 +20,7 @@ socket.on('game started', function(){
 	$('#page').html(gameroomHTML());
 });
 
-socket.emit('new mobile');
+// socket.emit('new mobile');
 
 function changePlayer(radians){
 	socket.emit('update', {id: socket.id, radians: radians});
