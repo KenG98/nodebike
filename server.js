@@ -21,14 +21,14 @@ io.sockets.on('connection' , function(socket){
   })
 
   socket.on('new mobile', function(data){
-    io.emit('player joined', socket.id);
+    io.sockets(game[0].display).emit('new display', socket.id);
   });
 
   socket.on('new display', function(data){
     console.log('new display');
     newDisplay(socket);
   });
-  
+
   socket.on('update', function(data){
     io.sockets(game[0].display).emit('update', data);
   });

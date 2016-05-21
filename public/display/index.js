@@ -21,7 +21,7 @@ function gameroomHTML(){
 
 $('#page').html(waitroomHTML());
 
-socket.on('player joined', function(playerid){
+socket.on('new mobile', function(playerid){
 	gameData.players[playerid] = "x";
 	$('#page').html(waitroomHTML());
 });
@@ -37,5 +37,5 @@ function startGame(){
 }
 
 function run(){
-	
+
 }
