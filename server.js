@@ -18,11 +18,6 @@ app.use(express.static(__dirname + '/public'));
 io.on('connection' , function(socket){
   console.log('New connection on socket ' + socket.id);
 
-  socket.on('disconnect', function(){
-    console.log('Disconnection.');
-    disconnect(socket);
-  })
-
   socket.on('new mobile', function(data){
     if(typeof games[0] == 'undefined'){
       console.log("no display");
@@ -39,10 +34,17 @@ io.on('connection' , function(socket){
     newDisplay(socket);
   });
 
+  socket.on('start game' function(data){
+    io.emit('start game', data);
+  })
   socket.on('update', function(data){
     io.to(games[0].display).emit('update', data);
   });
 
+  socket.on('disconnect', function(){
+    console.log('Disconnection.');
+    disconnect(socket);
+  });
 });
 
 function newDisplay(socket){
