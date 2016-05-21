@@ -11,11 +11,6 @@ server.listen(PORT, function () {
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/mob', function(req, res){
-	res.sendFile(__dirname + '/public/display/index.html');
-})
-
-
 io.on('connection' , function(socket){
   console.log('New connection:' + socket.id);
 });

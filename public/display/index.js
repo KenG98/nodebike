@@ -1,4 +1,3 @@
-// var socket = io('/display');
 var socket = io();
 
 gameData = {};
@@ -31,7 +30,7 @@ function startGame(){
 	canvas.width = $('#page').width();
 	canvas.height = $('#page').height();
 	canv = canvas.getContext("2d");
-	setInterval(renderCanvas, 34);
+	setInterval(run, 34);
 }
 
 function gameroomHTML(){
@@ -39,6 +38,8 @@ function gameroomHTML(){
 	return h;
 }
 
-function renderCanvas(){
-	// draw the screen
+function run(){
+	
 }
+
+
