@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
-var PORT = 3000
+var PORT = 3000;
 
 var games = [];
 
@@ -59,7 +59,7 @@ function newDisplay(socket){
     display: socket.id,
   };
   games[0].players = {};
-  socket.join('room ' + '0')
+  socket.join('room ' + '0');
 }
 function disconnect(socket){
   for(var i in games){
@@ -69,7 +69,7 @@ function disconnect(socket){
       for(var player in games[i].players){
         if(player == socket.id){
           console.log("Player quit: " + socket.id);
-          io.to(games[i].display).emit('player left', {id: socket.id})
+          io.to(games[i].display).emit('player left', {id: socket.id});
         }
       }
     }
