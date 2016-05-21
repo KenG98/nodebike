@@ -9,6 +9,7 @@ function waitroomHTML(){
 		h += p.id + '\n';
 	}
 	h += '<button onclick="startGame()">Start Game</button>';
+	return h;
 }
 
 $('#page').html(waitroomHTML());
@@ -33,7 +34,8 @@ function startGame(){
 }
 
 function gameroomHTML(){
-	return '<canvas id="gamescreen"></canvas>';
+	var h = '<canvas id="gamescreen"></canvas>';
+	return h;
 }
 
 function renderCanvas(){
