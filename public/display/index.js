@@ -24,8 +24,13 @@ $('#page').html(waitroomHTML());
 socket.emit('new display');
 
 socket.on('new mobile', function(playerid){
-	gameData.players[playerid] = "x";
+	gameData.players[playerid] = {color: "#00FF00", radians: Math.random() * 6.28};
 	$('#page').html(waitroomHTML());
+});
+
+socket.on('update', function(data){
+	gameData.players[data.id].radians = data.radians;
+	console.log(gameData);
 });
 
 function startGame(){
