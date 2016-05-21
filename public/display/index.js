@@ -1,3 +1,4 @@
+
 var socket = io();
 
 var gameData = {
@@ -20,6 +21,7 @@ function gameroomHTML(){
 }
 
 $('#page').html(waitroomHTML());
+socket.emit('new display');
 
 socket.on('new mobile', function(playerid){
 	gameData.players[playerid] = "x";
@@ -40,4 +42,4 @@ function run(){
 
 }
 
-socket.emit('new display');
+

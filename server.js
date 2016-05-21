@@ -5,7 +5,9 @@ var io = require('socket.io')(http);
 
 var PORT = 3000
 
-var games = {}
+var games = [];
+
+
 
 http.listen(PORT, function () {
   console.log('Running on *:' + PORT);
@@ -21,7 +23,7 @@ io.sockets.on('connection' , function(socket){
   })
 
   socket.on('new mobile', function(data){
-    io.sockets(games[0].display).emit('new mobile', socket.id);
+    io.to(games[0].display).emit('new mobile', socket.id);
   });
 
   socket.on('new display', function(data){
@@ -30,11 +32,13 @@ io.sockets.on('connection' , function(socket){
   });
 
   socket.on('update', function(data){
-    io.sockets(games[0].display).emit('update', data);
+    io.to(games[0].display).emit('update', data);
   });
 
 });
 
 function newDisplay(socket){
-  games[0].display = socket.id;
+  games[0] = {
+    display: socket.id,
+  };
 }
