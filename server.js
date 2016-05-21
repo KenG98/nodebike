@@ -1,11 +1,9 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
 var PORT = 8080;
 
-app.get('/', function (req, res) {
-  res.send('Hello world\n');
-});
+var io = require('socket.io').listen(PORT);
 
-http.listen(PORT);
+
+io.on('connection', function(socket) {
+  console.log('New connection from ' + socket.handshake.address.address + ' on socket ' + socket.id);
+
+});
