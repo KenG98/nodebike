@@ -6,12 +6,13 @@ var gameData = {
 };
 
 function waitroomHTML(){
-	var h = '<p>Waiting for game to start</p> \n ';
-	h += '<p>Players:</p> \n';
+	var h = '<p id="box">Waiting for players to join...</p> \n ';
+	h += '<p>Current Players:</p> \n';
 	for(p in gameData.players){
 		h += '<p>' + p + '</p>\n';
 	}
-	h += '<button onclick="startGame()">Start Game</button>';
+	h += '<hr WIDTH = 30% ALIGN = center SIZE= 1 COLOR=white>'
+	h += '<button class="button" style="vertical-align:center" onclick="startGame()"><span>Start Game</span></button>';
 	return h;
 }
 
