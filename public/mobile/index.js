@@ -1,4 +1,5 @@
-var socket = io('/mobile');
+// var socket = io('/mobile');
+var socket = io();
 
 function waitroomHTML(){
 	var h = '<p>Waiting for game to start</p>';

@@ -1,4 +1,5 @@
-var socket = io('/display');
+// var socket = io('/display');
+var socket = io();
 
 gameData = {};
 
