@@ -8,6 +8,8 @@ var gameData = {
 function waitroomHTML(){
 	var h = '<p id="box">Waiting for players to join...</p> \n ';
 	h += '<p>Current Players:</p> \n';
+	h += '<hr WIDTH = 30% ALIGN = center SIZE= 1 COLOR=white>'
+	
 	for(p in gameData.players){
 		h += '<p>' + p + '</p>\n';
 	}
