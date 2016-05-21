@@ -1,10 +1,11 @@
 body{
-	background-color: #141f1f;
+	background-color: yellow;
 }
 
-h1{
-	color:white;
+p{
+	color:black;
 	text-align: center;
-	font-size: 3em;
+	font-size: 5em;
 	font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+
 }
