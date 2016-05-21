@@ -23,13 +23,27 @@ socket.on('start game', function(){
 	$('#joyst').width(width);
 	$('#joyst').height(height);
 	console.log('game has started');
+	joystickEvent = {};
 	var joystick = new VirtualJoystick({container : document.getElementById('joyst'), mouseSupport : true});
-	setInterval(function(){
-		var x = joystick.deltaX();
-		var y = joystick.deltaY();
-		console.log(x, y);
-		// var angle = Math.atan(y/x);
-	}, 34);
+	joystick.addEventListener('touchStart', function(){
+		joystickEvent = setInterval(function(){
+			var x = joystick.deltaX();
+			var y = 0 - joystick.deltaY();
+			var angle = Math.atan(y/x);
+			if(y > 0 && x < 0) {
+				angle += 3.14;
+			} else if (y < 0 && x < 0){
+				angle += 3.14;
+			} else if (y < 0 && x > 0){
+				angle += 6.28;
+			}
+			changePlayer(angle);
+		}, 200);
+	})
+	joystick.addEventListener('touchEnd', function(){
+		clearInterval(joystickEvent);
+	})
+	
 });
 
 function changePlayer(radians){
