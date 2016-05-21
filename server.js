@@ -16,7 +16,7 @@ http.listen(PORT, function () {
 app.use(express.static(__dirname + '/public'));
 
 io.on('connection' , function(socket){
-  console.log('New connection on socket ' + socket.id);
+  console.log('New connection: ' + socket.id);
 
   socket.on('new mobile', function(data){
     if(typeof games[0] == 'undefined'){
@@ -65,6 +65,8 @@ function disconnect(socket){
   for(var i in games){
     if (games[i].display == socket.id){
       console.log("Display quit: " + socket.id);
+      io.to('room ' + i).emit('game invalid');
+      delete game[i];
     } else {
       for(var player in games[i].players){
         if(player == socket.id){
