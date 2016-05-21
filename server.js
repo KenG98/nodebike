@@ -17,11 +17,11 @@ io.sockets.on('connection' , function(socket){
   console.log('New connection on socket ' + socket.id);
 
   socket.on('disconnect', function(){
-  	console.log('Disconnection.');
+    console.log('Disconnection.');
   })
 
   socket.on('new mobile', function(data){
-    io.sockets(game[0].display).emit('new mobile', socket.id);
+    io.sockets(games[0].display).emit('new mobile', socket.id);
   });
 
   socket.on('new display', function(data){
@@ -30,11 +30,11 @@ io.sockets.on('connection' , function(socket){
   });
 
   socket.on('update', function(data){
-    io.sockets(game[0].display).emit('update', data);
+    io.sockets(games[0].display).emit('update', data);
   });
 
 });
 
 function newDisplay(socket){
-  game[0].display = socket.id;
+  games[0].display = socket.id;
 }
