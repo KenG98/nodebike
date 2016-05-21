@@ -1,11 +1,22 @@
 body{
-	background-color: 	#B80000 ;
+	background: linear-gradient(red, blue) ;
 }
 
-p{
-	color:black;
-	text-align: center;
-	font-size: 3em;
+h1{
+	color:white;
+	text-align: left;
+	font-size: 20px;
+	font-weight: lighter;
 	font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 
+}
+
+
+p{
+	color:white;
+	text-align: center;
+	margin-top:50%;
+	font-size: 20px;
+	font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+	font-weight: lighter;
 }
