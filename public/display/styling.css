@@ -84,7 +84,7 @@ p{
 #gamescreen{
 	padding: 0;
     margin:0;
-    border: none;
+    border: 1px solid white;
     display: block;
     width: 99%;
     height: 80%;
