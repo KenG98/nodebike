@@ -17,7 +17,7 @@ function waitroomHTML(){
 	h += '<hr WIDTH = 30% ALIGN = center SIZE= 1 COLOR=white>'
 	
 	for(p in gameData.players){
-		h += '<p>' + p + '</p>\n';
+		h += '<p id="players">' + p + '</p>\n';
 	}
 	h += '<hr WIDTH = 30% ALIGN = center SIZE= 1 COLOR=white>'
 	h += '<button class="button" style="vertical-align:center" onclick="startGame()"><span>Start Game</span></button>';
