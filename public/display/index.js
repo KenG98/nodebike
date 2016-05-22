@@ -9,7 +9,17 @@ var width = $('body').width();
 var height = $('body').height();
 
 var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF", "#FFFF00"];
-var players = 0;
+var usedColors = [];
+var livingPlayers = 0;
+
+function getUnusedColor(){
+	for(c in colors){
+		if(!usedColors.includes(colors[c])){
+			usedColors.push(colors[c]);
+			return colors[c];
+		}
+	}
+}
 
 function gameroomHTML(){
 	var h = '<canvas id="gamescreen"></canvas>';
@@ -19,16 +29,26 @@ function gameroomHTML(){
 socket.emit('new display');
 
 socket.on('new mobile', function(data){
-	gameData.players[data.id] = {color: colors[players++],
+	gameData.players[data.id] = {color: getUnusedColor(),
 		radians: 0,
 		x: 0.3 * width, y: players / 6 * height,
 		alive: true};
-	$('#players').append('<p>' + data.id + '</p>');
+	$('#players').append('<p id="' + data.id + '">' + data.id + '</p>');
 	socket.emit('update color', {id: data.id, color: gameData.players[data.id].color});
+	livingPlayers++;
 });
 
 socket.on('update', function(data){
 	gameData.players[data.id].radians = data.radians;
+});
+
+socket.on('player left', function(data){
+	var id = data.id.substring(2, data.id.length);
+	var playerColor = gameData.players[id].color;
+	delete gameData.players[id];
+	var index = usedColors.indexOf(playerColor);
+	usedColors.splice(index, 1);
+	$('#' + id).remove();
 });
 
 function startGame(){
