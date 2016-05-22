@@ -44,7 +44,7 @@ io.on('connection' , function(socket){
   });
 
   socket.on('update', function(data){
-    console.log('Update: ' + socket.id + '\t data: ' + JSON.stringify(data));
+    // console.log('Update: ' + socket.id + '\t data: ' + JSON.stringify(data));
     io.to(games[0].display).emit('update', data);
   });
 

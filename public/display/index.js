@@ -8,7 +8,7 @@ var gameData = {
 var width = $('body').width();
 var height = $('body').height();
 
-var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF", "#FFFF00"];
+var colors = ["#ff0000", "#00ff00", "#0000ff", "#ffffff", "#ffff00"];
 var usedColors = [];
 var livingPlayers = 0;
 
@@ -24,6 +24,15 @@ function getUnusedColor(){
 function gameroomHTML(){
 	var h = '<canvas id="gamescreen"></canvas>';
 	return h;
+}
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
 socket.emit('new display');
@@ -78,8 +87,6 @@ function draw(){
 }
 
 function run(){
-	
-	console.log(livingPlayers);
 
 	for(p in gameData.players){
 		if(gameData.players[p].alive){
@@ -98,7 +105,9 @@ function run(){
 				livingPlayers--;
 			} else {
 				var pixel = canv.getImageData(gameData.players[p].futureX, gameData.players[p].futureY, 1, 1).data;
-				if(pixel[0] != 0 || pixel[1] != 0 || pixel[2] != 0){
+				var color = rgbToHex(pixel[0], pixel[1], pixel[2]);
+				// console.log(color);
+				if(color != "#000000" && color != gameData.players[p].color){
 					gameData.players[p].alive = false;
 					livingPlayers--;
 				}
