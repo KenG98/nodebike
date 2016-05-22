@@ -31,7 +31,7 @@ socket.emit('new display');
 socket.on('new mobile', function(data){
 	gameData.players[data.id] = {color: getUnusedColor(),
 		radians: 0,
-		x: 0.3 * width, y: players / 6 * height,
+		x: 0.3 * width, y: livingPlayers / 6 * height,
 		alive: true};
 	$('#players').append('<p id="' + data.id + '">' + data.id + '</p>');
 	socket.emit('update color', {id: data.id, color: gameData.players[data.id].color});
@@ -91,9 +91,9 @@ function run(){
 			} else if (gameData.players[p].y < 0 || gameData.players[p].y > height){
 				gameData.players[p].alive = false;
 			} else {
-				var pixel = canv.getImageData(gameData.players[p].futureX, gameData.players[p].futureY,
-				1, 1).data;
-				console.log(pixel[0], pixel[1], pixel[2]);
+				// console.log(gameData.players[p].futureX, gameData.players[p].futureY);
+				var pixel = canv.getImageData(gameData.players[p].futureX, gameData.players[p].futureY, 1, 1).data;
+				// console.log(pixel[0], pixel[1], pixel[2]);
 				if(pixel[0] != 0 || pixel[1] != 0 || pixel[2] != 0){
 					gameData.players[p].alive = false;
 				}
