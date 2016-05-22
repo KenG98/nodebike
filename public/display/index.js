@@ -72,20 +72,36 @@ function draw(){
 
 function run(){
 	for(p in gameData.players){
-		if(gameData.players[p].x < 0 || gameData.players[p].x > width){
-			gameData.players[p].alive = false;
-		} else if (gameData.players[p].y < 0 || gameData.players[p].y > height){
-			gameData.players[p].alive = false;
+		if(gameData.players[p].alive){
+			gameData.players[p].futureX = gameData.players[p].x + (5 * Math.cos(gameData.players[p].radians));
+			gameData.players[p].futureY = gameData.players[p].y - (5 * Math.sin(gameData.players[p].radians));
 		}
 	}
 
 	for(p in gameData.players){
-		if(gameData.players[p].alive){
-			gameData.players[p].x += (5 * Math.cos(gameData.players[p].radians));
-			gameData.players[p].y -= (5 * Math.sin(gameData.players[p].radians));
+		if(gameData.players[p].alive == true){
+			if(gameData.players[p].x < 0 || gameData.players[p].x > width){
+				gameData.players[p].alive = false;
+			} else if (gameData.players[p].y < 0 || gameData.players[p].y > height){
+				gameData.players[p].alive = false;
+			} else {
+				var pixel = canv.getImageData(gameData.players[p].futureX, gameData.players[p].futureY,
+				1, 1).data;
+				console.log(pixel[0], pixel[1], pixel[2]);
+				if(pixel[0] != 0 || pixel[1] != 0 || pixel[2] != 0){
+					gameData.players[p].alive = false;
+				}
+			}
 		}
 	}
 
 	draw();
+
+	for(p in gameData.players){
+		if(gameData.players[p].alive){
+			gameData.players[p].x = gameData.players[p].futureX;
+			gameData.players[p].y = gameData.players[p].futureY;
+		}
+	}
 }
 
