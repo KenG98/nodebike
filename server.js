@@ -39,8 +39,8 @@ io.on('connection' , function(socket){
     io.to('room ' + '0').emit('start game');
   });
   socket.on('update color', function(data){
-    console.log('Update color: ' + data.id);
-    io.to(data.id).emit('update color', data);
+    console.log('Update color: ' + socket.id + '\t data: ' + JSON.stringify(data));
+    io.to('/#' + data.id).emit('update color', data);
   });
 
   socket.on('update', function(data){
