@@ -51,8 +51,20 @@ function startGame(){
 	setInterval(run, 34);
 }
 
-function run(){
-	
+function draw(){
+	for(p in gameData.players){
+		canv.beginPath();
+		canv.arc(gameData.players[p].x, gameData.players[p].y, 10, 0, 6.28);
+		canv.lineWidth = 3;
+		canv.stroke();
+	}
 }
 
+function run(){
+	for(p in gameData.players){
+		gameData.players[p].x += (10 * Math.cos(gameData.players[p].radians));
+		gameData.players[p].y -= (10 * Math.sin(gameData.players[p].radians));
+	}
+	draw();
+}
 
