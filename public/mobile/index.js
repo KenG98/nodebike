@@ -53,3 +53,11 @@ socket.on('start game', function(){
 	});
 });
 
+socket.on('update color', function(data){
+	console.log("got color " + data.color);
+	if(data.color == "white"){
+		$('body').css({background: "linear-gradient(" + data.color + ", black)"});
+	} else {
+		$('body').css({background: "linear-gradient(" + data.color + ", white)"});
+	}
+});
