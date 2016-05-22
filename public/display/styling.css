@@ -2,6 +2,16 @@ body{
 	background-color: #383838 ;
 	font-weight: lighter;
 	font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+	overflow: hidden;
+}
+
+body, html{
+	height:100%;
+}
+
+#page{
+	heigh:100%;
+	overflow:hidden;
 }
 
 h1{
@@ -69,4 +79,13 @@ p{
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+#gamescreen{
+	padding: 0;
+    margin: auto;
+    display: block;
+    width: 90%;
+    height: 500px;
+    border: 2px solid blue;
 }
