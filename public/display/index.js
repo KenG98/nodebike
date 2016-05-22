@@ -33,7 +33,7 @@ socket.on('new mobile', function(data){
 		radians: 0,
 		x: 0.3 * width, y: (livingPlayers + 1) / 6 * height,
 		alive: true};
-	$('#players').append('<p id="'+data.id+'" class="players" style="color: ' + gameData.players[data.id].color + ';">Player</p>');
+	$('#players').append('<div id="'+data.id+'" class="circle" style="background-color: ' + gameData.players[data.id].color + ';"></div>');
 	socket.emit('update color', {id: data.id, color: gameData.players[data.id].color});
 	livingPlayers++;
 });

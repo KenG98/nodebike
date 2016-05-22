@@ -91,11 +91,24 @@ p{
 
 }
 
-.players{
+#players{
 	font-size: 1.8em;
+	text-align: center;
+	position: relative;
+
 }
 
 #winner{
 	font-size: 10em;
 	text-align: center;
+}
+
+.circle{
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	position: relative;
+	margin: 10px;
+	display:inline-block;
+
 }
