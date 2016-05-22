@@ -55,16 +55,5 @@ socket.on('start game', function(){
 
 socket.on('update color', function(data){
 	console.log("got color " + data.color);
-	if(data.color == "white"){
-		$('body').css({background: "linear-gradient(white, black)"});
-		$('h1').css({color: "black"});
-		$('hr').css({"border-color": "black"});
-	} else if(data.color == "yellow"){
-		$('body').css({background: "linear-gradient(" + data.color + ", white)"});
-		$('p').css({color: "black"});
-		$('h1').css({color: "black"});
-		$('hr').css({"border-color": "black"});
-	}else {
-		$('body').css({background: "linear-gradient(" + data.color + ", white)"});
-	}
+	$('body').css({background: data.color});
 });
