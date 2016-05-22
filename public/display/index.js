@@ -35,7 +35,7 @@ socket.emit('new display');
 socket.on('new mobile', function(data){
 	gameData.players[data.id] = {color: colors[players++], radians: 0, x: 0.3 * width, y: players / 6 * height};
 	$('#page').html(waitroomHTML());
-	socket.emit('update color', {id: socket.id, color: gameData.players[data.id].color});
+	socket.emit('update color', {id: data.id, color: gameData.players[data.id].color});
 });
 
 socket.on('update', function(data){
