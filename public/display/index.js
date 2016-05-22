@@ -9,7 +9,17 @@ var width = $('body').width();
 var height = $('body').height();
 
 var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF", "#FFFF00"];
-var players = 0;
+var usedColors = [];
+var livingPlayers = 0;
+
+function getUnusedColor(){
+	for(c in colors){
+		if(!usedColors.includes(colors[c])){
+			usedColors.push(colors[c]);
+			return colors[c];
+		}
+	}
+}
 
 function gameroomHTML(){
 	var h = '<canvas id="gamescreen"></canvas>';
@@ -19,16 +29,31 @@ function gameroomHTML(){
 socket.emit('new display');
 
 socket.on('new mobile', function(data){
-	gameData.players[data.id] = {color: colors[players++],
+	gameData.players[data.id] = {color: getUnusedColor(),
 		radians: 0,
-		x: 0.3 * width, y: players / 6 * height,
+		x: 0.3 * width, y: (livingPlayers + 1) / 6 * height,
 		alive: true};
+<<<<<<< HEAD
 	$('#players').append('<p id="players">' + data.id + '</p>');
+=======
+	$('#players').append('<p id="players"' + data.id + '" style="color: ' + gameData.players[data.id].color + ';">' + data.id + '</p>');
+>>>>>>> origin/master
 	socket.emit('update color', {id: data.id, color: gameData.players[data.id].color});
+	livingPlayers++;
 });
 
 socket.on('update', function(data){
 	gameData.players[data.id].radians = data.radians;
+});
+
+socket.on('player left', function(data){
+	var id = data.id.substring(2, data.id.length);
+	var playerColor = gameData.players[id].color;
+	delete gameData.players[id];
+	var index = usedColors.indexOf(playerColor);
+	usedColors.splice(index, 1);
+	$('#' + id).remove();
+	livingPlayers--;
 });
 
 function startGame(){
@@ -57,6 +82,9 @@ function draw(){
 }
 
 function run(){
+	
+	console.log(livingPlayers);
+
 	for(p in gameData.players){
 		if(gameData.players[p].alive){
 			gameData.players[p].futureX = gameData.players[p].x + (5 * Math.cos(gameData.players[p].radians));
@@ -68,14 +96,15 @@ function run(){
 		if(gameData.players[p].alive == true){
 			if(gameData.players[p].x < 0 || gameData.players[p].x > width){
 				gameData.players[p].alive = false;
+				livingPlayers--;
 			} else if (gameData.players[p].y < 0 || gameData.players[p].y > height){
 				gameData.players[p].alive = false;
+				livingPlayers--;
 			} else {
-				var pixel = canv.getImageData(gameData.players[p].futureX, gameData.players[p].futureY,
-				1, 1).data;
-				console.log(pixel[0], pixel[1], pixel[2]);
+				var pixel = canv.getImageData(gameData.players[p].futureX, gameData.players[p].futureY, 1, 1).data;
 				if(pixel[0] != 0 || pixel[1] != 0 || pixel[2] != 0){
 					gameData.players[p].alive = false;
+					livingPlayers--;
 				}
 			}
 		}
@@ -87,6 +116,18 @@ function run(){
 		if(gameData.players[p].alive){
 			gameData.players[p].x = gameData.players[p].futureX;
 			gameData.players[p].y = gameData.players[p].futureY;
+		}
+	}
+
+	if(livingPlayers == 1){
+		for(p in gameData.players){
+			if(gameData.players[p].alive == true){
+				var winner = gameData.players[p].color;
+				$('#page').html('<p style="color:' + winner + ';">' + winner + ' has won!</p>');
+				setTimeout(function(){
+					location.reload();
+				}, 10000);
+			}
 		}
 	}
 }
