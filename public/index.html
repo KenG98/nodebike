@@ -1,18 +1,29 @@
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+     <script type="text/javascript">
+         
+            function RedirectM() {
+               window.location.href="mobile/index.html";
+            }
+            function RedirectD() {
+               window.location.href="display/index.html";
+            }
+         
+      </script>
+
   <title>Nodebike</title>
 </head>
 <body>
   <!-- Show for mobile -->
   <div>
-    <a href="/mobile/">Play!</a>
-    <small>This should only show on mobile</small>
+    <button class="button" style="vertical-align:center" onclick="RedirectM();"><span>Mobile</span></button>
+    
   </div>
 
   <!-- Show for desktop -->
   <div>
-    <a href="/display/">Play!</a>
-    <small>This should only show on desktop</small>
+    <button class="button" style="vertical-align:center" onclick="RedirectD();"><span>Desktop</span></button>
   </div>
 </body>
 </html>
