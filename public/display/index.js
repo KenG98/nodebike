@@ -8,7 +8,7 @@ var gameData = {
 var width = $('body').width();
 var height = $('body').height();
 
-var colors = ["red", "green", "blue", "white", "yellow"];
+var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF", "#FFFF00"];
 var players = 0;
 
 function waitroomHTML(){
@@ -33,7 +33,10 @@ $('#page').html(waitroomHTML());
 socket.emit('new display');
 
 socket.on('new mobile', function(data){
-	gameData.players[data.id] = {color: colors[players++], radians: 0, x: 0.3 * width, y: players / 6 * height};
+	gameData.players[data.id] = {color: colors[players++], 
+		radians: 0, 
+		x: 0.3 * width, y: players / 6 * height,
+		alive: true};
 	$('#page').html(waitroomHTML());
 	socket.emit('update color', {id: data.id, color: gameData.players[data.id].color});
 });
@@ -57,19 +60,32 @@ function startGame(){
 
 function draw(){
 	for(p in gameData.players){
-		canv.beginPath();
-		canv.strokeStyle=gameData.players[p].color;
-		canv.arc(gameData.players[p].x, gameData.players[p].y, 4, 0, 6.28);
-		canv.lineWidth = 3;
-		canv.stroke();
+		if(gameData.players[p].alive){
+			canv.beginPath();
+			canv.strokeStyle=gameData.players[p].color;
+			canv.arc(gameData.players[p].x, gameData.players[p].y, 4, 0, 6.28);
+			canv.lineWidth = 3;
+			canv.stroke();
+		}
 	}
 }
 
 function run(){
 	for(p in gameData.players){
-		gameData.players[p].x += (5 * Math.cos(gameData.players[p].radians));
-		gameData.players[p].y -= (5 * Math.sin(gameData.players[p].radians));
+		if(gameData.players[p].x < 0 || gameData.players[p].x > width){
+			gameData.players[p].alive = false;
+		} else if (gameData.players[p].y < 0 || gameData.players[p].y > height){
+			gameData.players[p].alive = false;
+		}
 	}
+
+	for(p in gameData.players){
+		if(gameData.players[p].alive){
+			gameData.players[p].x += (5 * Math.cos(gameData.players[p].radians));
+			gameData.players[p].y -= (5 * Math.sin(gameData.players[p].radians));
+		}
+	}
+
 	draw();
 }
 

@@ -55,11 +55,11 @@ socket.on('start game', function(){
 
 socket.on('update color', function(data){
 	console.log("got color " + data.color);
-	if(data.color == "white"){
+	if(data.color == "#FFFFFF"){
 		$('body').css({background: "linear-gradient(white, black)"});
 		$('h1').css({color: "black"});
 		$('hr').css({"border-color": "black"});
-	} else if(data.color == "yellow"){
+	} else if(data.color == "#FFFF00"){
 		$('body').css({background: "linear-gradient(" + data.color + ", white)"});
 		$('p').css({color: "black"});
 		$('h1').css({color: "black"});
