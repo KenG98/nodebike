@@ -8,6 +8,9 @@ var gameData = {
 var width = $('body').width();
 var height = $('body').height();
 
+var colors = ["red", "green", "blue", "white", "yellow"];
+var players = 0;
+
 function waitroomHTML(){
 	var h = '<p id="box">Waiting for players to join...</p> \n ';
 	h += '<p>Current Players:</p> \n';
@@ -30,8 +33,9 @@ $('#page').html(waitroomHTML());
 socket.emit('new display');
 
 socket.on('new mobile', function(data){
-	gameData.players[data.id] = {color: "#00FF00", radians: Math.random() * 6.28, x: Math.random() * width, y: Math.random() * height};
+	gameData.players[data.id] = {color: colors[players++], radians: 0, x: 0.3 * width, y: players / 6 * height};
 	$('#page').html(waitroomHTML());
+	socket.emit('update color', {id: socket.id, color: gameData.players[data.id].color})
 });
 
 socket.on('update', function(data){
@@ -54,7 +58,8 @@ function startGame(){
 function draw(){
 	for(p in gameData.players){
 		canv.beginPath();
-		canv.arc(gameData.players[p].x, gameData.players[p].y, 10, 0, 6.28);
+		canv.strokeStyle=gameData.players[p].color;
+		canv.arc(gameData.players[p].x, gameData.players[p].y, 4, 0, 6.28);
 		canv.lineWidth = 3;
 		canv.stroke();
 	}
@@ -62,8 +67,8 @@ function draw(){
 
 function run(){
 	for(p in gameData.players){
-		gameData.players[p].x += (10 * Math.cos(gameData.players[p].radians));
-		gameData.players[p].y -= (10 * Math.sin(gameData.players[p].radians));
+		gameData.players[p].x += (5 * Math.cos(gameData.players[p].radians));
+		gameData.players[p].y -= (5 * Math.sin(gameData.players[p].radians));
 	}
 	draw();
 }

@@ -45,7 +45,7 @@ socket.on('start game', function(){
 				radians += 6.28;
 			}
 			changePlayerAngle(radians);
-		}, 200);
+		}, 100);
 	});
 
 	joystick.addEventListener('touchEnd', function(){
