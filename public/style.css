@@ -2,9 +2,33 @@ body{
   background-color: #383838;
 }
 
+h1{
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  font-weight: lighter;
+  text-align: center;
+  color:white;
+  font-size: 10em;
+  font-style: bold;
+  margin-bottom: -20px;
+}
 
+p{
+  text-align: center;
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  font-weight: lighter;
+  color:white;
+  font-size: 2em;
+}
 
+#option{
 
+  padding: 10px;
+  border: solid white;
+  border-width: thin;
+  width: 20%;
+  margin: 0 auto;
+
+}
 
 .button {
   display:block;
@@ -13,7 +37,7 @@ body{
   
   color: #FFFFFF;
   text-align: center;
-  font-size: 5em;
+  font-size: 3em;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 
   font-weight: lighter;
