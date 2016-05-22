@@ -48,6 +48,11 @@ io.on('connection' , function(socket){
     io.to(games[0].display).emit('update', data);
   });
 
+  socket.on('game over', function(){
+    console.log('Game over');
+    io.to('room ' + '0').emit('game over', data);
+  });
+
   socket.on('disconnect', function(){
     console.log('Disconnect: ' + socket.id);
     disconnect(socket);
