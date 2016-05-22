@@ -131,7 +131,7 @@ function run(){
 				$('#page').html('<p id="winner" style="color:' + winner + ';">WINNER</p>');
 				setTimeout(function(){
 					location.reload();
-				}, 10000);
+				}, 4000);
 			}
 		}
 		setTimeout(function(){
