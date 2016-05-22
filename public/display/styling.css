@@ -2,17 +2,17 @@ body{
 	background-color: #383838 ;
 	font-weight: lighter;
 	font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
-body, html{
+/*body, html{
 	height:100%;
-}
+}*/
 
-#page{
-	heigh:100%;
+/*#page{
+	height:100%;
 	overflow:hidden;
-}
+}*/
 
 h1{
 	color:white;
@@ -81,11 +81,7 @@ p{
   right: 0;
 }
 
-#gamescreen{
-	padding: 0;
-    margin: auto;
-    display: block;
-    width: 90%;
-    height: 500px;
+/*#gamescreen{
+	
     border: 2px solid blue;
-}
+}*/
