@@ -68,3 +68,13 @@ socket.on('update color', function(data){
 		$('body').css({background: "linear-gradient(" + data.color + ", white)"});
 	}
 });
+
+socket.on('game invalid', function(){
+	window.location = '/';
+});
+
+// socket.on('game over', function(){
+// 	setTimeout(function(){
+// 		location.refresh();
+// 	}, 2000);
+// });
