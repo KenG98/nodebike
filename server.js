@@ -66,7 +66,7 @@ function disconnect(socket){
     if (games[i].display == socket.id){
       console.log("Display quit: " + socket.id);
       io.to('room ' + i).emit('game invalid');
-      delete game[i];
+      delete games[i];
     } else {
       for(var player in games[i].players){
         if(player == socket.id){
