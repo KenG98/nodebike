@@ -33,7 +33,7 @@ socket.on('new mobile', function(data){
 		radians: 0,
 		x: 0.3 * width, y: (livingPlayers + 1) / 6 * height,
 		alive: true};
-	$('#players').append('<p id="players"' + data.id + '" style="color: ' + gameData.players[data.id].color + ';">' + data.id + '</p>');
+	$('#players').append('<p id="'+data.id+'" class="players" style="color: ' + gameData.players[data.id].color + ';">Players</p>');
 	socket.emit('update color', {id: data.id, color: gameData.players[data.id].color});
 	livingPlayers++;
 });
@@ -115,16 +115,19 @@ function run(){
 		}
 	}
 
-	if(livingPlayers == 1){
+	if(livingPlayers <= 1){
 		for(p in gameData.players){
 			if(gameData.players[p].alive == true){
 				var winner = gameData.players[p].color;
-				$('#page').html('<p style="color:' + winner + ';">' + winner + ' has won!</p>');
+				$('#page').html('<p id="winner" style="color:' + winner + ';">WINNER</p>');
 				setTimeout(function(){
 					location.reload();
 				}, 10000);
 			}
 		}
+		setTimeout(function(){
+					location.reload();
+				}, 10000);
 	}
 }
 

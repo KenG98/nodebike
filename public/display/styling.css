@@ -91,6 +91,11 @@ p{
 
 }
 
-#players{
-	font-size: 1.3em;
+.players{
+	font-size: 1.8em;
+}
+
+#winner{
+	font-size: 10em;
+	text-align: center;
 }
