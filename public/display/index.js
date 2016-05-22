@@ -11,33 +11,19 @@ var height = $('body').height();
 var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF", "#FFFF00"];
 var players = 0;
 
-function waitroomHTML(){
-	var h = '<p id="box">Waiting for players to join...</p> \n ';
-	h += '<p>Current Players:</p> \n';
-	h += '<hr WIDTH = 30% ALIGN = center SIZE= 1 COLOR=white>'
-	
-	for(p in gameData.players){
-		h += '<p id="players">' + p + '</p>\n';
-	}
-	h += '<hr WIDTH = 30% ALIGN = center SIZE= 1 COLOR=white>'
-	h += '<button class="button" style="vertical-align:center" onclick="startGame()"><span>Start Game</span></button>';
-	return h;
-}
-
 function gameroomHTML(){
 	var h = '<canvas id="gamescreen"></canvas>';
 	return h;
 }
 
-$('#page').html(waitroomHTML());
 socket.emit('new display');
 
 socket.on('new mobile', function(data){
-	gameData.players[data.id] = {color: colors[players++], 
-		radians: 0, 
+	gameData.players[data.id] = {color: colors[players++],
+		radians: 0,
 		x: 0.3 * width, y: players / 6 * height,
 		alive: true};
-	$('#page').html(waitroomHTML());
+	$('#players').append('<p>' + data.id + '</p>');
 	socket.emit('update color', {id: data.id, color: gameData.players[data.id].color});
 });
 
