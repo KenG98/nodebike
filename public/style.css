@@ -13,7 +13,7 @@ body{
   
   color: #FFFFFF;
   text-align: center;
-  font-size: 2em;
+  font-size: 5em;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 
   font-weight: lighter;
@@ -34,8 +34,9 @@ body{
 }
 
 .button span:after {
-  content: '...';
-  position: absolute;
+  content: ' ';
+/*  font-size: 1em;
+*/  position: absolute;
   opacity: 0;
   top: 0;
   right: -20px;
